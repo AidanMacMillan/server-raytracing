@@ -1,13 +1,20 @@
 import Renderer, { HitRecord } from "../renderer";
 import Vector3 from "../../vector3";
-import LightRay from "../../lightRay";
+import Photon from "../../photon";
+import Material from "../../material";
 
-class Sphere extends Renderer {
-	constructor(public center: Vector3, public radius: number) {
-		super();
+export default class SphereRenderer extends Renderer {
+	constructor(public center: Vector3, public radius: number, material: Material) {
+		super(material);
 	}
 
-	hit(ray: LightRay, tMin: number, tMax: number, hitRecord: HitRecord) {
+	update() {}
+
+	hit(ray: Photon, hitRecord: HitRecord) {
+		
+		var tMin = 0.001;
+		var tMax = ray.length;
+
 		var originCenter = ray.origin.subtract(this.center);
 		var a = ray.direction.dot(ray.direction);
         var b = originCenter.dot(ray.direction);

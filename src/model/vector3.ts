@@ -5,6 +5,15 @@ export default class Vector3 {
 		return new Vector3(0,0,0);
 	}
 
+	static random() {
+		var vector: Vector3;
+		do {
+			var vectorTemp = new Vector3(Math.random(), Math.random(), Math.random());
+			vector = vectorTemp.multiply(2).subtract(new Vector3(1,1,1));
+		} while (vector.squaredLength() >= 1);
+		return vector;
+	}
+
 	add(vector: Vector3) {
 		return new Vector3(this.x + vector.x, this.y + vector.y, this.z + vector.z);
 	}

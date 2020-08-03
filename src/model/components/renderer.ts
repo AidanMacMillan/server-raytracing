@@ -1,9 +1,15 @@
 import Vector3 from "../vector3";
 import Ray from "../ray";
-import LightRay from "../lightRay";
+import LightRay from "../photon";
+import Component from "../component";
+import Material from "../material";
 
-export default abstract class Renderer {
-	abstract hit(ray: LightRay, tMin: number, tMax: number, hitRecord: HitRecord): boolean
+export default abstract class Renderer extends Component {
+	constructor(public material: Material) {
+		super();
+	}
+
+	abstract hit(ray: LightRay, hitRecord: HitRecord): boolean
 }
 
 export class HitRecord {
